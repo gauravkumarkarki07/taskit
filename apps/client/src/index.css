@@ -5,3 +5,10 @@
 body{
     @apply font-Poppins;
 }
+
+@layer base {
+  :root {
+
+        --radius: 0.5rem
+    }
+}
