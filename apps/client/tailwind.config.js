@@ -12,7 +12,7 @@ export default {
   			secondary: '#3a0ca3',
   			tertiary: '#4361ee',
   			accentPrimary: '#f72585',
-  			accentSecondary: '#4cc9f0'
+  			accentSecondary: '#0077b6'
   		},
   		fontFamily: {
   			Poppins: ['Poppins','sans-serif']
