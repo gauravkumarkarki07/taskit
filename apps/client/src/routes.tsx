@@ -3,6 +3,7 @@ import App from './App';
 import Auth from './Auth/views/Index';
 import LoginForm from './Auth/components/LoginForm';
 import SignupForm from './Auth/components/SignupForm';
+import ForgetPassword from './Auth/components/ForgetPassword';
 
 export const routes=createBrowserRouter([
 	{
@@ -25,6 +26,10 @@ export const routes=createBrowserRouter([
 					{
 						path:'signup',
 						element:<SignupForm/>
+					},
+					{
+						path:'forgetpassword',
+						element:<ForgetPassword/>
 					}
 				]
 			}

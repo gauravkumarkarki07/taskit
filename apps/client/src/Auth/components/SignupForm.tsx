@@ -19,8 +19,8 @@ function SignupForm() {
   }
   return (
     <section className="flex flex-col px-4 py-4 w-full gap-6 relative">
-    <article className="flex flex-col items-center">
-      <h1 className="text-lg font-semibold">Register Today !</h1>
+    <article className="flex gap-2 flex-col items-center">
+      <h1 className="text-xl font-semibold">Register Today !</h1>
       <section className="flex text-xs gap-1 text-gray-500">
         <span>Already have an account?</span>
         <Link to={'/auth/login'}>
@@ -33,6 +33,7 @@ function SignupForm() {
       <section className="relative">
         <Label>Email</Label>
         <Input
+          type="email"
           placeholder="example@example.com"
           {...register('email', { required: 'Email is required' })}
           className={cn(errors.email && "border-red-500 focus-visible:ring-0")}
@@ -64,9 +65,11 @@ function SignupForm() {
         Sign Up
       </Button>
     </form>
+    <Link to={'/auth/forgetpassword'}>
     <span className="text-xs text-gray-500 hover:underline cursor-pointer w-fit">
       Forget Password?
     </span>
+    </Link>
   </section>
   )
 }
