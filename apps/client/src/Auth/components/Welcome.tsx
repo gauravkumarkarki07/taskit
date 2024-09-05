@@ -9,7 +9,7 @@ function Welcome() {
             <span className="text-accentPrimary">It</span>
           </h1>
         </section>
-        <p className="text-sm text-gray-100">
+        <p className="text-sm text-white">
           Welcome to TaskIt, your ultimate solution for managing tasks and deadlines efficiently.
           Get started by exploring the features and setting up your projects.
         </p>

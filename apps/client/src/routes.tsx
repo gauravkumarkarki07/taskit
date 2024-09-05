@@ -6,6 +6,8 @@ import SignupForm from './Auth/components/SignupForm';
 import ForgetPassword from './Auth/components/ForgetPassword';
 import NotFoundPage from './Common/pages/NotFoundPage';
 import ErrorPage from './Common/pages/ErrorPage';
+import ProtectedRoute from './Auth/components/ProtectedRoute';
+import Dashboard from '@/Dashboard/views/Index';
 
 export const routes=createBrowserRouter([
 	{
@@ -35,6 +37,20 @@ export const routes=createBrowserRouter([
 					}
 				]
 			},
+			{
+				path:'',
+				element:<ProtectedRoute/>,
+				children:[
+					{
+						index:true,
+						element:<Navigate to={'/dashboard'}/>
+					},
+					{
+						path:'dashboard',
+						element:<Dashboard/>
+					}
+				]
+			}
 			
 		],
 		errorElement:<ErrorPage/>
