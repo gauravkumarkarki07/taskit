@@ -43,11 +43,11 @@ function ForgetPassword() {
                     Send Link
                 </Button>
             </form>
-            <Link to={'/auth/login'}>
-                <span className="text-xs text-gray-500 hover:underline cursor-pointer w-fit">
+            <span className="text-xs text-gray-500 hover:underline cursor-pointer w-fit">
+                <Link to={'/auth/login'}>
                     Login?
-                </span>
-            </Link>
+                </Link>
+            </span>
         </section>
     )
 }

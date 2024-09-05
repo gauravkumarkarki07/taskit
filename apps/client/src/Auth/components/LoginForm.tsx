@@ -63,11 +63,11 @@ function LoginForm() {
           Login
         </Button>
       </form>
-      <Link to={'/auth/forgetpassword'}>
       <span className="text-xs text-gray-500 hover:underline cursor-pointer w-fit">
-        Forget Password?
+        <Link to={'/auth/forgetpassword'}>
+          Forget Password?
+        </Link>
       </span>
-      </Link>
     </section>
   )
 }
