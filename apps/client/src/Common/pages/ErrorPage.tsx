@@ -8,7 +8,7 @@ function ErrorPage() {
         navigate('/',{replace:true})
     }
   return (
-    <section className="flex items-center justify-center min-h-screen">
+    <section className="flex flex-col items-center gap-3 justify-center min-h-screen">
         <article className="flex flex-col text-3xl">
             <span className="text-accentPrimary">Ops!</span>
             <h1>Something went wrong!</h1>

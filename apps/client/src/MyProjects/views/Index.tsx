@@ -4,9 +4,9 @@ import ProjectList from "../components/ProjectList"
 
 function Index() {
   return (
-    <section className="flex flex-col gap-10">
-      <MyProjectsHeader/>
-      <ProjectList/>
+    <section className="flex flex-col gap-10 h-full w-full">
+      <MyProjectsHeader />
+      <ProjectList />
     </section>
   )
 }
