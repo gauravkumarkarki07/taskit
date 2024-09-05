@@ -1,4 +1,4 @@
-import {createBrowserRouter} from 'react-router-dom';
+import {createBrowserRouter, Navigate} from 'react-router-dom';
 import App from './App';
 import Auth from './Auth/views/Index';
 import LoginForm from './Auth/components/LoginForm';
@@ -10,11 +10,16 @@ export const routes=createBrowserRouter([
 		element:<App/>,
 		children:[
 			{
-				path:'',
+				path:'auth',
 				element:<Auth/>,
 				children:[
 					{
+						path:'',
+						element:<Navigate to={'/auth/login'} replace/>
+					},
+					{
 						path:'login',
+						index:true,
 						element:<LoginForm/>
 					},
 					{

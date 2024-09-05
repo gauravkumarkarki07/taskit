@@ -21,7 +21,7 @@ function LoginForm() {
         <h1 className="text-lg font-semibold">Welcome Back!</h1>
         <section className="flex text-xs gap-1 text-gray-500">
           <span>Don't have an account?</span>
-          <Link to={'/signup'}>
+          <Link to={'/auth/signup'}>
             <span className="text-accentSecondary underline hover:text-secondary cursor-pointer">Create a free account</span>
           </Link>
         </section>
