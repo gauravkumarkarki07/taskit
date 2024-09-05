@@ -17,7 +17,7 @@ function Sidebar() {
                 <h1 className='font-semibold text-black'>Overview</h1>
                 <NavLink
                     to={'/dashboard'}
-                    className={({ isActive }) => `flex items-center gap-2 hover:text-accentPrimary ${isActive && 'text-accentPrimary font-semibold'}`}
+                    className={({ isActive }) => `flex items-center gap-2 w-fit hover:text-accentPrimary ${isActive && 'text-accentPrimary font-semibold'}`}
                 >
                     <LayoutDashboard size={18} />
                     <span>
@@ -26,7 +26,7 @@ function Sidebar() {
                 </NavLink>
                 <NavLink
                     to={'/myprojects'}
-                    className={({ isActive }) => `flex items-center gap-2 hover:text-accentPrimary ${isActive && 'text-accentPrimary font-semibold'}`}
+                    className={({ isActive }) => `flex items-center gap-2 w-fit hover:text-accentPrimary ${isActive && 'text-accentPrimary font-semibold'}`}
                 >
                     <span>
                         <FolderKanban size={18} />
@@ -37,7 +37,7 @@ function Sidebar() {
                 </NavLink>
                 <NavLink
                     to={'/calendar'}
-                    className={({ isActive }) => `flex items-center gap-2 hover:text-accentPrimary ${isActive && 'text-accentPrimary font-semibold'}`}
+                    className={({ isActive }) => `flex items-center gap-2 w-fit hover:text-accentPrimary ${isActive && 'text-accentPrimary font-semibold'}`}
                 >
                     <CalendarRange size={18} />
                     <span>
@@ -48,7 +48,7 @@ function Sidebar() {
             <section className='flex flex-col gap-4'>
                 <h1 className='font-semibold text-black'>Settings</h1>
 
-                <section className='flex gap-2 items-center cursor-pointer hover:text-accentPrimary'>
+                <section className='flex gap-2 items-center cursor-pointer w-fit hover:text-accentPrimary'>
                     <span>
                         <LogOut size={18} />
                     </span>

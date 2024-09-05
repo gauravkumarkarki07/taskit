@@ -8,6 +8,8 @@ import NotFoundPage from './Common/pages/NotFoundPage';
 import ErrorPage from './Common/pages/ErrorPage';
 import ProtectedRoute from './Auth/components/ProtectedRoute';
 import Dashboard from '@/Dashboard/views/Index';
+import MyProjects from '@/MyProjects/views/Index';
+import Calendar from '@/Calendar/views/Index';
 
 export const routes=createBrowserRouter([
 	{
@@ -48,6 +50,14 @@ export const routes=createBrowserRouter([
 					{
 						path:'dashboard',
 						element:<Dashboard/>
+					},
+					{
+						path:'myprojects',
+						element:<MyProjects/>
+					},
+					{
+						path:'calendar',
+						element:<Calendar/>
 					}
 				]
 			}
