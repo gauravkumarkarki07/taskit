@@ -1,3 +1,4 @@
+import { Separator } from '@/components/ui/separator';
 import { LayoutDashboard } from 'lucide-react';
 import { FolderKanban } from 'lucide-react';
 import { CalendarRange } from 'lucide-react';
@@ -6,12 +7,13 @@ import { NavLink } from 'react-router-dom';
 
 function Sidebar() {
     return (
-        <nav className='flex flex-col px-8 py-4 gap-12 text-gray-500'>
-            <section className='text-2xl font-semibold'>
+        <nav className='flex flex-col px-8 py-4 gap-10 text-gray-500'>
+            <section className='text-2xl font-semibold flex flex-col gap-2'>
                 <h1 className='text-black'>
                     Task
                     <span className='text-accentPrimary'>It</span>
                 </h1>
+                    <Separator/>
             </section>
             <section className='flex flex-col gap-4'>
                 <h1 className='font-semibold text-black'>Overview</h1>
