@@ -4,6 +4,8 @@ import Auth from './Auth/views/Index';
 import LoginForm from './Auth/components/LoginForm';
 import SignupForm from './Auth/components/SignupForm';
 import ForgetPassword from './Auth/components/ForgetPassword';
+import NotFoundPage from './Common/pages/NotFoundPage';
+import ErrorPage from './Common/pages/ErrorPage';
 
 export const routes=createBrowserRouter([
 	{
@@ -32,7 +34,13 @@ export const routes=createBrowserRouter([
 						element:<ForgetPassword/>
 					}
 				]
-			}
-		]
+			},
+			
+		],
+		errorElement:<ErrorPage/>
+	},
+	{
+		path:'*',
+		element:<NotFoundPage/>
 	}
 ])

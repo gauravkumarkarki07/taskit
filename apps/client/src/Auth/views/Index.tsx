@@ -9,7 +9,7 @@ function Index() {
         <Welcome/>
       </section>
       <section className="md:w-[50%] h-[50%] md:h-full">
-        <Outlet />
+        <Outlet/>
       </section>
     </section>
    </section>
