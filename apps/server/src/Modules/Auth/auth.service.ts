@@ -26,7 +26,7 @@ export class AuthService {
       const newUser = await this.databaseService.user.create({
         data: {
           password: hashedPassword,
-          ...data,
+          email: data.email,
         },
       });
       if (!newUser) {
