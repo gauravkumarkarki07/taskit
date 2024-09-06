@@ -2,7 +2,12 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { DatabaseService } from '../Database/database.service';
 import { Prisma } from '@prisma/client';
 import { hashSync, compareSync } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
+import {
+  JsonWebTokenError,
+  sign,
+  TokenExpiredError,
+  verify,
+} from 'jsonwebtoken';
 import { Response } from 'express';
 import { DtoMapper } from 'src/Utils/dto.mapper';
 import { LoginResponseDto, SignUpResponseDto } from './dto/auth.response.dto';
@@ -88,6 +93,25 @@ export class AuthService {
         throw error;
       }
       throw new HttpException('Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  //Validate Token
+  async verifyToken(token) {
+    try {
+      const validUser = verify(token, process.env.JWT_SECRET_KEY);
+      return validUser;
+    } catch (error) {
+      if (error instanceof TokenExpiredError) {
+        throw new HttpException('Token has expired', HttpStatus.UNAUTHORIZED);
+      } else if (error instanceof JsonWebTokenError) {
+        throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
+      } else {
+        throw new HttpException(
+          'Server Error',
+          HttpStatus.INTERNAL_SERVER_ERROR,
+        );
+      }
     }
   }
 }
