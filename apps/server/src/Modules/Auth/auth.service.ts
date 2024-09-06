@@ -56,14 +56,12 @@ export class AuthService {
     res: Response,
   ): Promise<LoginResponseDto> {
     try {
-      console.log(data);
       const validUser = await this.databaseService.user.findUnique({
         where: {
           email: data.email,
         },
       });
       if (!validUser) {
-        console.log('hi');
         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
       }
       const validPassword = compareSync(data.password, validUser.password);
@@ -72,7 +70,9 @@ export class AuthService {
       }
       const token = sign(
         {
-          user: validUser,
+          email: validUser.email,
+          firstName: validUser.firstName,
+          lastName: validUser.lastName,
         },
         process.env.JWT_SECRET_KEY,
         {
@@ -97,7 +97,7 @@ export class AuthService {
   }
 
   //Validate Token
-  async verifyToken(token) {
+  async verifyToken(token: string) {
     try {
       const validUser = verify(token, process.env.JWT_SECRET_KEY);
       return validUser;
