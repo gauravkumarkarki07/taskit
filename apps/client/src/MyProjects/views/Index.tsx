@@ -7,6 +7,7 @@ function Index() {
     <section className="flex flex-col gap-10 h-full w-full">
       <MyProjectsHeader />
       <ProjectList />
+
     </section>
   )
 }

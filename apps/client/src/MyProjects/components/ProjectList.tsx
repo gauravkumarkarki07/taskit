@@ -1,4 +1,9 @@
 import ProjectCard from "./ProjectCard"
+import {
+    Pagination, PaginationContent, PaginationItem,
+    PaginationLink, PaginationNext, PaginationPrevious
+} from "@/components/ui/pagination"
+
 
 function ProjectList() {
     return (
@@ -8,6 +13,28 @@ function ProjectList() {
                 {projects?.map((project) => (
                     <ProjectCard project={project} key={project.id} />
                 ))}
+            </section>
+            <section>
+            <Pagination>
+                <PaginationContent>
+                    <PaginationItem>
+                        <PaginationPrevious href="#" />
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink href="#">
+                            1
+                        </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationLink href="#">
+                            2
+                        </PaginationLink>
+                    </PaginationItem>
+                    <PaginationItem>
+                        <PaginationNext href="#" />
+                    </PaginationItem>
+                </PaginationContent>
+            </Pagination>
             </section>
         </section>
     )
