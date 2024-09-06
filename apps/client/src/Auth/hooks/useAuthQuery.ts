@@ -12,6 +12,9 @@ export const useSignUp = () => {
     },
     onError:(error)=>{
         toast.error(error.message)
+    },
+    onSuccess:()=>{
+        toast.success('Account Registered Successfully')
     }
   });
 };
