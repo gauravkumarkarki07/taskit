@@ -1,20 +1,32 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { cn } from '@/lib/utils'
+import { useLogin } from "@/Auth/hooks/useAuthQuery"
+import { useEffect } from "react"
+
+export interface LoginData {
+  email: string;
+  password: string;
+}
 
 function LoginForm() {
-  interface LoginData {
-    email: string;
-    password: string;
-  }
+  const navigate=useNavigate();
+  const { mutateAsync: loginApiCall,isSuccess } = useLogin();
   const { register, handleSubmit, formState: { errors } } = useForm<LoginData>();
 
-  const handleLogin = (validData: LoginData) => {
-    console.log(validData)
+  const handleLogin = async (validData: LoginData) => {
+    await loginApiCall(validData);
   }
+
+  useEffect(()=>{
+    if(isSuccess){
+      navigate('/');
+    }
+  },[isSuccess,navigate])
+  
   return (
     <section className="flex flex-col px-4 py-4 w-full gap-6 relative">
       <article className="flex gap-2 flex-col items-center">

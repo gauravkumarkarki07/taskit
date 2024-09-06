@@ -13,13 +13,14 @@ export class ApiManager {
         credentials: "include",
       });
       if (!response.ok) {
-        throw response;
+        const errorData=await response.json();
+        throw Error(errorData.message);
       }
       const responseData = await response.json();
       return responseData;
     } catch (error) {
       if (error instanceof Error) {
-        throw new Error(`Cannot make request: ${error.message}`);
+        throw new Error(`${error.message}`);
       } else {
         throw new Error('An Unknown Error Occured')
       }
