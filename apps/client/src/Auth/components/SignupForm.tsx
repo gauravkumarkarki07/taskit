@@ -4,9 +4,10 @@ import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
 import { cn } from '@/lib/utils'
 import { Button } from "@/components/ui/button";
-import {useSignUp} from '@/Auth/hooks/useAuthQuery';
+import { useSignUp } from '@/Auth/hooks/useAuthQuery';
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import Spinner from "@/Common/Utils/Spinner";
 
 export interface SignUp {
   username: string;
@@ -15,19 +16,19 @@ export interface SignUp {
 }
 
 function SignupForm() {
-  const navigate=useNavigate();
-  const{mutateAsync:signUpApiCall,isSuccess}=useSignUp();
+  const navigate = useNavigate();
+  const { mutateAsync: signUpApiCall, isSuccess, isPending } = useSignUp();
   const { register, handleSubmit, formState: { errors } } = useForm<SignUp>();
 
-  const handleSignup = async(validData: SignUp) => {
+  const handleSignup = async (validData: SignUp) => {
     await signUpApiCall(validData);
   }
 
-  useEffect(()=>{
-    if(isSuccess){
+  useEffect(() => {
+    if (isSuccess) {
       navigate('/auth/login')
     }
-  },[isSuccess,navigate])
+  }, [isSuccess, navigate])
 
   return (
     <section className="flex flex-col px-4 py-4 w-full gap-6 relative">
@@ -74,7 +75,7 @@ function SignupForm() {
           {errors.password && <span className="md:absolute text-xs text-red-500">{errors.password.message}</span>}
         </section>
         <Button type="submit">
-          Sign Up
+          {isPending ? <Spinner /> : 'Sign Up'}
         </Button>
       </form>
       <span className="text-xs text-gray-500 hover:underline cursor-pointer w-fit">

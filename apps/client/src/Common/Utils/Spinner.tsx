@@ -6,7 +6,7 @@ function Spinner() {
             <ClipLoader
                 color={'#f72585'}
                 loading={true}
-                size={50}
+                size={20}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />

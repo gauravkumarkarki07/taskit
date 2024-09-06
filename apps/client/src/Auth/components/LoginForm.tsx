@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { cn } from '@/lib/utils'
 import { useLogin } from "@/Auth/hooks/useAuthQuery"
 import { useEffect } from "react"
+import Spinner from "@/Common/Utils/Spinner"
 
 export interface LoginData {
   email: string;
@@ -14,7 +15,7 @@ export interface LoginData {
 
 function LoginForm() {
   const navigate=useNavigate();
-  const { mutateAsync: loginApiCall,isSuccess } = useLogin();
+  const { mutateAsync: loginApiCall,isSuccess,isPending } = useLogin();
   const { register, handleSubmit, formState: { errors } } = useForm<LoginData>();
 
   const handleLogin = async (validData: LoginData) => {
@@ -72,7 +73,7 @@ function LoginForm() {
           {errors.password && <span className="md:absolute text-xs text-red-500">{errors.password.message}</span>}
         </section>
         <Button>
-          Login
+          {isPending ? <Spinner/> : 'Login'}
         </Button>
       </form>
       <span className="text-xs text-gray-500 hover:underline cursor-pointer w-fit">
