@@ -39,4 +39,10 @@ export class AuthController {
     }
     return this.authService.verifyToken(token);
   }
+
+  //logout
+  @Post('logout')
+  async logout(@Res() res: Response) {
+    return await this.authService.logout(res);
+  }
 }

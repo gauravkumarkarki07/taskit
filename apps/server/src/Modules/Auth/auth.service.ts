@@ -114,4 +114,19 @@ export class AuthService {
       }
     }
   }
+
+  //Logout
+  async logout(res: Response) {
+    res.clearCookie('accessToken');
+    res.status(200).json({
+      message: 'Logout Successful',
+    });
+    try {
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException('Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }
