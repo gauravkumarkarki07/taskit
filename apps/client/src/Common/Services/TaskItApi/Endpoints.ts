@@ -4,5 +4,8 @@ export const AuthEndpoints={
     },
     login:()=>{
         return 'auth/login'
+    },
+    verifyToken:()=>{
+        return 'auth/verifytoken'
     }
 }
