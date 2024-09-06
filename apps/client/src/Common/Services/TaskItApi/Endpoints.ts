@@ -7,5 +7,8 @@ export const AuthEndpoints={
     },
     verifyToken:()=>{
         return 'auth/verifytoken'
+    },
+    logout:()=>{
+        return 'auth/logout'
     }
 }

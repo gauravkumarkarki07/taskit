@@ -1,11 +1,24 @@
+import { useLogout } from '@/Auth/hooks/useAuthQuery';
 import { Separator } from '@/components/ui/separator';
 import { LayoutDashboard } from 'lucide-react';
 import { FolderKanban } from 'lucide-react';
 import { CalendarRange } from 'lucide-react';
 import { LogOut } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 function Sidebar() {
+    const navigate=useNavigate();
+
+    const{mutateAsync:logoutApiCall,isSuccess}=useLogout();
+
+    const handleLogout=async()=>{
+        await logoutApiCall();
+    }
+
+    if(isSuccess){
+        navigate('/auth/login',{replace:true})
+    }
+    
     return (
         <nav className='flex flex-col px-8 py-4 gap-10 text-gray-500'>
             <section className='text-2xl font-semibold flex flex-col gap-2'>
@@ -50,7 +63,7 @@ function Sidebar() {
             <section className='flex flex-col gap-4'>
                 <h1 className='font-semibold text-black'>Settings</h1>
 
-                <section className='flex gap-2 items-center cursor-pointer w-fit hover:text-accentPrimary'>
+                <section className='flex gap-2 items-center cursor-pointer w-fit hover:text-accentPrimary' onClick={handleLogout}>
                     <span>
                         <LogOut size={18} />
                     </span>

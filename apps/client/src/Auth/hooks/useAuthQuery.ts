@@ -44,3 +44,18 @@ export const useVerifyToken=()=>{
     retry:0,
   })
 }
+
+export const useLogout=()=>{
+  return useMutation({
+    mutationFn:async()=>{
+      const response=await ApiManager.post(AuthEndpoints.logout(),{});
+      return response;
+    },
+    onSuccess:()=>{
+      toast.success('Logout Successful')
+    },
+    onError:(error)=>{
+      toast.error(error.message)
+    }
+  })
+}

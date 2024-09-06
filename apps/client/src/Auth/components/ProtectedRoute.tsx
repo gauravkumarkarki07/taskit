@@ -10,7 +10,7 @@ function ProtectedRoute() {
     useEffect(() => {
         if (isSuccess && validUserDetails) {
             sessionStorage.setItem('validUserDetails', JSON.stringify(validUserDetails));
-        } else if (isError || !validUserDetails) {
+        } else if (isError) {
             sessionStorage.removeItem('validUserDetails');
         }
     }, [isSuccess, isError, validUserDetails])
