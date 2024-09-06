@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button"
-import { CirclePlus } from 'lucide-react';
+import CreateProjectDialog from "./CreateProjectDialog"
 
 function MyProjectsHeader() {
   return (
@@ -11,14 +10,7 @@ function MyProjectsHeader() {
           Manage your projects here.
         </p>
       </article>
-      <Button className="flex gap-2 items-center w-fit">
-        <span>
-          <CirclePlus />
-        </span>
-        <span>
-          Create New
-        </span>
-      </Button>
+      <CreateProjectDialog/>
     </section>
   </header>
   )
