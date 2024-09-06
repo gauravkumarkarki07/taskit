@@ -2,15 +2,26 @@ import Sidebar from "@/Common/pages/Sidebar"
 import { Navigate, Outlet } from "react-router-dom"
 import { useVerifyToken } from "../hooks/useAuthQuery"
 import Spinner from '@/Common/Utils/Spinner'
+import { useEffect } from "react";
 
 function ProtectedRoute() {
-    const { data: validUserDetails, isLoading } = useVerifyToken();
+    const { data: validUserDetails, isLoading, isSuccess, isError } = useVerifyToken();
+
+    useEffect(() => {
+        if (isSuccess && validUserDetails) {
+            sessionStorage.setItem('validUserDetails', JSON.stringify(validUserDetails));
+        } else if (isError || !validUserDetails) {
+            sessionStorage.removeItem('validUserDetails');
+        }
+    }, [isSuccess, isError, validUserDetails])
+
 
     if (isLoading) {
         return (
-            <Spinner/>
+            <Spinner />
         )
     }
+
 
     return (
         <section className="flex">
