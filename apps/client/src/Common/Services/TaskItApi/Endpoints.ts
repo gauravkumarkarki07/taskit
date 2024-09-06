@@ -2,7 +2,7 @@ export const AuthEndpoints={
     signUp:()=>{
         return 'auth/signup'
     },
-    loging:()=>{
+    login:()=>{
         return 'auth/login'
     }
 }
