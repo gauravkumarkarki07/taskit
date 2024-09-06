@@ -4,19 +4,31 @@ import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
 import { cn } from '@/lib/utils'
 import { Button } from "@/components/ui/button";
+import {useSignUp} from '@/Auth/hooks/useAuthQuery';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-interface SignUp {
+export interface SignUp {
   username: string;
   email: string;
   password: string;
 }
 
 function SignupForm() {
+  const navigate=useNavigate();
+  const{mutateAsync:signUpApiCall,isSuccess}=useSignUp();
   const { register, handleSubmit, formState: { errors } } = useForm<SignUp>();
 
-  const handleSignup = (validData: SignUp) => {
-    console.log(validData);
+  const handleSignup = async(validData: SignUp) => {
+    await signUpApiCall(validData);
   }
+
+  useEffect(()=>{
+    if(isSuccess){
+      navigate('/auth/login')
+    }
+  },[isSuccess,navigate])
+
   return (
     <section className="flex flex-col px-4 py-4 w-full gap-6 relative">
       <article className="flex gap-2 flex-col items-center">
@@ -53,7 +65,7 @@ function SignupForm() {
                 message: "Password must be at least 8 characters long",
               },
               pattern: {
-                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
                 message:
                   "Password must contain at least one uppercase letter, one lowercase letter, and one number",
               },
@@ -61,7 +73,7 @@ function SignupForm() {
           />
           {errors.password && <span className="md:absolute text-xs text-red-500">{errors.password.message}</span>}
         </section>
-        <Button>
+        <Button type="submit">
           Sign Up
         </Button>
       </form>

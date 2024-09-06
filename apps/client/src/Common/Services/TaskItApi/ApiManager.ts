@@ -7,7 +7,7 @@ export class ApiManager {
       const response = await fetch(`${BASE_URL}/${url}`, {
         method: method,
         headers: {
-            "Content-Type":"application/json"
+          "Content-Type": "application/json",
         },
         body: body ? JSON.stringify(body) : undefined,
         credentials: "include",
@@ -18,7 +18,11 @@ export class ApiManager {
       const responseData = await response.json();
       return responseData;
     } catch (error) {
-      throw new Error(`Cannot make request: ${error}`);
+      if (error instanceof Error) {
+        throw new Error(`Cannot make request: ${error.message}`);
+      } else {
+        throw new Error('An Unknown Error Occured')
+      }
     }
   }
 
