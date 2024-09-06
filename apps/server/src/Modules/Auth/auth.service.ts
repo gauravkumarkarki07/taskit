@@ -38,6 +38,9 @@ export class AuthService {
       const response = DtoMapper.mapDto(newUser, SignUpResponseDto);
       return response;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       throw new HttpException('Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
@@ -48,12 +51,14 @@ export class AuthService {
     res: Response,
   ): Promise<LoginResponseDto> {
     try {
+      console.log(data);
       const validUser = await this.databaseService.user.findUnique({
         where: {
           email: data.email,
         },
       });
       if (!validUser) {
+        console.log('hi');
         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
       }
       const validPassword = compareSync(data.password, validUser.password);
@@ -79,6 +84,9 @@ export class AuthService {
       });
       return response;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       throw new HttpException('Server Error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
