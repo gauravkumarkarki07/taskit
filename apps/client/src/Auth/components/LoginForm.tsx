@@ -51,7 +51,7 @@ function LoginForm() {
                 message: "Password must be at least 8 characters long",
               },
               pattern: {
-                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/,
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
                 message:
                   "Password must contain at least one uppercase letter, one lowercase letter, and one number",
               },
