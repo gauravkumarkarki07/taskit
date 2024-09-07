@@ -23,7 +23,7 @@ const Progress = React.forwardRef<
       />
     </ProgressPrimitive.Root>
     <span
-      className="absolute inset-1-2 flex items-center justify-center text-xs font-semibold text-accentSecondary"
+      className="absolute inset-1 flex items-center justify-center text-[10px] font-semibold text-accentSecondary"
       style={{ left: `${value}%`, transform: 'translateX(-50%)' }}
     >
       {value}%

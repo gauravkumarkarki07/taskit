@@ -9,41 +9,44 @@ import {
 import { Project } from "./ProjectCard";
 
 function ProjectList() {
-    const{data:projectArray,isLoading}=useGetAllProjects();
+    const { data: projectArray, isLoading } = useGetAllProjects();
 
-    if(isLoading){
-        return <Spinner/>
+    if (isLoading) {
+        return <Spinner />
     }
 
     return (
         <section className="flex flex-col gap-4">
             <h1 className="font-semibold">Project Details</h1>
             <section className="flex flex-wrap gap-12 items-center">
-                {projectArray?.projects.map((project:Project) => (
+                {projectArray.projects.length === 0 && <span>No projects created</span>}
+                {projectArray?.projects.map((project: Project) => (
                     <ProjectCard project={project} key={project.id} />
                 ))}
             </section>
             <section>
-            <Pagination>
-                <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious href="#" />
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                            1
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationLink href="#">
-                            2
-                        </PaginationLink>
-                    </PaginationItem>
-                    <PaginationItem>
-                        <PaginationNext href="#" />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
+                {projectArray.projects.length > 0 &&
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious href="#" />
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">
+                                    1
+                                </PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">
+                                    2
+                                </PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationNext href="#" />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                }
             </section>
         </section>
     )

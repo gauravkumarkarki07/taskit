@@ -2,6 +2,7 @@ import { Progress } from "@/components/ui/progress"
 import { format } from 'date-fns';
 import ProjectCardAction from "./ProjectCardAction";
 import { useNavigate } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
 
 export interface Project {
     id: string;
@@ -38,13 +39,20 @@ function ProjectCard({ project }: ProjectCardProps) {
                 </h1>
                 <ProjectCardAction onEdit={()=>handleEdit(project.id)} onDelete={handleDelete}/>
                 </section>
+                <Separator/>
                 <p className="text-gray-500 text-sm h-[30px] break-words overflow-hidden text-ellipsis">
                     {project.description || "No description available"}
                 </p>
-                <section className="flex flex-col gap-1 text-sm text-gray-500">
+                {
+                    !project.totalTask ? 
+                    <span className="text-gray-500 text-sm">No Tasks</span>
+                    :
+                    <section className="flex flex-col gap-1 text-sm text-gray-500">
                     <span>Tasks Completed</span>
-                    <Progress value={progressValue} />
+                    <Progress value={progressValue}/>
                 </section>
+
+                }
             </section>
             <section className="flex flex-row items-center justify-between text-xs text-gray-500 mt-auto">
                 <section className="flex gap-1 px-1 py-1 border rounded-lg bg-primary/20 text-primary">
