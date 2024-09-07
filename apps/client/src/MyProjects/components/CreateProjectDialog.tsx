@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from '@/lib/utils';
 import { useCreateProject } from "../hooks/useProjectQuery";
+import { useState } from "react";
 
 
 export interface Project {
@@ -18,14 +19,17 @@ export interface Project {
 }
 
 function CreateProjectDialog() {
-    const { register, handleSubmit, formState: { errors } } = useForm<Project>();
+    const { register, handleSubmit, formState: { errors },reset } = useForm<Project>();
     const { mutateAsync: createProjectApiCall } = useCreateProject();
+    const[isOpen,setIsOpen]=useState(false);
 
     const handleSave = async(validData: Project) => {
         await createProjectApiCall(validData);
+        reset();
+        setIsOpen(false);
     }
     return (
-        <Dialog>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
                 <Button className="flex gap-2 items-center w-fit">
                     <span>
@@ -63,7 +67,7 @@ function CreateProjectDialog() {
                     </section>
                     <DialogFooter>
                         <section className="flex items-center justify-between w-full">
-                            <DialogClose>
+                            <DialogClose asChild>
                                 <Button variant={'destructive'} type="button">
                                     Cancel
                                 </Button>
