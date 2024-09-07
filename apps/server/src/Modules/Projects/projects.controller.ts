@@ -63,6 +63,7 @@ export class ProjectsController {
 
   @Delete('deleteproject/:projectId')
   async deleteProject(
+    @Param('projectId')
     projectId: string,
     @Req() req: JwtMiddlewareRequest,
   ): Promise<DeleteProjectResponseDto> {

@@ -140,7 +140,12 @@ export class ProjectService {
     projectId: string,
   ): Promise<DeleteProjectResponseDto> {
     try {
-      const getProjectById = await this.getProjectById(userId, projectId);
+      const getProjectById = await this.databaseService.project.findUnique({
+        where: {
+          id: projectId,
+          userId: userId,
+        },
+      });
       if (!getProjectById) {
         throw new HttpException('Project doesnt exists', HttpStatus.NOT_FOUND);
       }
