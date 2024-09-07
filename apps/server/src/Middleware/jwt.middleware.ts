@@ -25,7 +25,6 @@ export class JwtMiddleware implements NestMiddleware {
     try {
       const token = req.cookies.accessToken;
       if (!token) {
-        console.log('hi');
         throw new HttpException('Please login first', HttpStatus.UNAUTHORIZED);
       }
       const decoded = verify(
