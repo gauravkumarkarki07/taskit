@@ -15,7 +15,7 @@ type UserDetailsToken = {
   lastName: string | null;
 };
 
-interface JwtMiddlewareRequest extends Request {
+export interface JwtMiddlewareRequest extends Request {
   user: UserDetailsToken;
 }
 
