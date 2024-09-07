@@ -42,12 +42,15 @@ export const useVerifyToken=()=>{
       return response;
     },
     retry:0,
+    gcTime:0
   })
 }
 
 export const useLogout=()=>{
+  const queryClient=useQueryClient();
   return useMutation({
     mutationFn:async()=>{
+      queryClient.invalidateQueries({queryKey:['validUserDetails']})
       const response=await ApiManager.post(AuthEndpoints.logout(),{});
       return response;
     },

@@ -5,20 +5,23 @@ import { FolderKanban } from 'lucide-react';
 import { CalendarRange } from 'lucide-react';
 import { LogOut } from 'lucide-react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import Spinner from '../Utils/Spinner';
 
 function Sidebar() {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
-    const{mutateAsync:logoutApiCall,isSuccess}=useLogout();
+    const { mutateAsync: logoutApiCall, isPending } = useLogout();
 
-    const handleLogout=async()=>{
+    const handleLogout = async () => {
         await logoutApiCall();
+        navigate('/auth/login', { replace: true })
     }
 
-    if(isSuccess){
-        navigate('/auth/login',{replace:true})
+
+    if (isPending) {
+        return (<Spinner />)
     }
-    
+
     return (
         <nav className='flex flex-col px-8 py-4 gap-10 text-gray-500'>
             <section className='text-2xl font-semibold flex flex-col gap-2'>
@@ -26,7 +29,7 @@ function Sidebar() {
                     Task
                     <span className='text-accentPrimary'>It</span>
                 </h1>
-                    <Separator/>
+                <Separator />
             </section>
             <section className='flex flex-col gap-4'>
                 <h1 className='font-semibold text-black'>Overview</h1>

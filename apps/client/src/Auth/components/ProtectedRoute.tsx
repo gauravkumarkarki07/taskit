@@ -22,7 +22,6 @@ function ProtectedRoute() {
         )
     }
 
-
     return (
         <section className="flex">
             <section className="w-[23%] min-h-screen">
