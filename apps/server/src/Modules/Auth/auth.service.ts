@@ -73,6 +73,7 @@ export class AuthService {
           email: validUser.email,
           firstName: validUser.firstName,
           lastName: validUser.lastName,
+          id: validUser.id,
         },
         process.env.JWT_SECRET_KEY,
         {
