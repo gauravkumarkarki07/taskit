@@ -1,5 +1,7 @@
 import { Progress } from "@/components/ui/progress"
 import { format } from 'date-fns';
+import ProjectCardAction from "./ProjectCardAction";
+import { useNavigate } from "react-router-dom";
 
 export interface Project {
     id: string;
@@ -15,14 +17,27 @@ type ProjectCardProps = {
 }
 
 function ProjectCard({ project }: ProjectCardProps) {
+    const navigate=useNavigate();
     const progressValue = project.totalTask ? (project.taskCompleted || 0) / project.totalTask * 100 : 0;
+
+    const handleEdit=(projectId:string)=>{
+        navigate(`/myprojects/${projectId}`)
+    }
+    
+    const handleDelete=()=>{
+    
+    }
+    
 
     return (
         <section className="px-3 py-2 rounded-md bg-white text-black flex flex-col w-[450px] h-[180px] gap-4 relative">
             <section className="flex flex-col flex-grow gap-2">
+                <section className="flex justify-between">
                 <h1 className="w-[80%] whitespace-nowrap text-ellipsis overflow-hidden font-semibold">
                     {project.title}
                 </h1>
+                <ProjectCardAction onEdit={()=>handleEdit(project.id)} onDelete={handleDelete}/>
+                </section>
                 <p className="text-gray-500 text-sm h-[30px] break-words overflow-hidden text-ellipsis">
                     {project.description || "No description available"}
                 </p>

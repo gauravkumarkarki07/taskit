@@ -10,6 +10,7 @@ import ProtectedRoute from './Auth/components/ProtectedRoute';
 import Dashboard from '@/Dashboard/views/Index';
 import MyProjects from '@/MyProjects/views/Index';
 import Calendar from '@/Calendar/views/Index';
+import ProjectEditPage from './MyProjects/components/ProjectEditPage';
 
 export const routes=createBrowserRouter([
 	{
@@ -53,7 +54,12 @@ export const routes=createBrowserRouter([
 					},
 					{
 						path:'myprojects',
-						element:<MyProjects/>
+						element:<MyProjects/>,
+					
+					},
+					{
+						path:'myprojects/:projectId',
+						element:<ProjectEditPage/>
 					},
 					{
 						path:'calendar',
