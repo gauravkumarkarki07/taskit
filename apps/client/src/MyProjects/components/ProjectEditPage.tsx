@@ -5,31 +5,42 @@ import { Project } from "./CreateProjectDialog";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useGetProjectById } from "../hooks/useProjectQuery";
+import { useDeleteProject, useGetProjectById, useUpdateProject } from "../hooks/useProjectQuery";
 import { useParams } from "react-router-dom";
 import Spinner from "@/Common/Utils/Spinner";
 import { useEffect } from "react";
+import ProjectDeleteConfirm from "./ProjectDeleteConfirm";
 
 function ProjectEditPage() {
 
     const { projectId } = useParams();
 
-    const { data: projectDetails, isLoading } = useGetProjectById(projectId || '');
+    const id = projectId || ''
+
+    const { data: projectDetails, isLoading } = useGetProjectById(id);
+
+    const { mutateAsync: updateProjectApiCall, isPending: saving } = useUpdateProject();
+
+    const {mutateAsync:deleteProjectApiCall}=useDeleteProject();
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm<Project>();
 
-    const handleSave = (data: Project) => {
-        console.log(data)
+    const handleSave = async (validData: Project) => {
+        await updateProjectApiCall({ projectId: id, updatedData: validData })
+    }
+
+    const handleDelete=async()=>{
+        await deleteProjectApiCall(id);
     }
 
     useEffect(() => {
         if (projectDetails) {
             reset(projectDetails)
         }
-    }, [projectDetails,reset])
+    }, [projectDetails, reset])
 
     if (isLoading) {
-        return <Spinner/>
+        return <Spinner />
     }
 
     return (
@@ -59,11 +70,17 @@ function ProjectEditPage() {
                     <Textarea {...register('description')} className="h-[100px] resize-none" />
                 </section>
                 <section className="flex justify-between">
-                    <Button type="button" variant={'destructive'}>
-                        Delete
-                    </Button>
-                    <Button type="submit">
-                        Save Changes
+                    <ProjectDeleteConfirm onDelete={handleDelete}/>
+                    <Button type="submit" className="w-[120px] flex items-center justify-center">
+                        {
+                            saving ?
+                                <span className="flex items-center justify-center gap-2">
+                                    Saving
+                                    <Spinner size={15} fullscreen={false}/>
+                                </span>
+                                :
+                                'Save Changes'
+                        }
                     </Button>
                 </section>
             </form>

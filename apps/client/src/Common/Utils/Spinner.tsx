@@ -1,12 +1,18 @@
 import ClipLoader from "react-spinners/ClipLoader";
 
-function Spinner() {
+interface SpinnerProps{
+    size?:number;
+    color?:string;
+    fullscreen?:boolean;
+}
+
+function Spinner({size=20,color='#f72585',fullscreen=true}:SpinnerProps) {
     return (
-        <section className="flex items-center justify-center min-h-screen">
+        <section className={fullscreen ? 'flex items-center justify-center min-h-screen':''}>
             <ClipLoader
-                color={'#f72585'}
+                color={color}
                 loading={true}
-                size={20}
+                size={size}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />
