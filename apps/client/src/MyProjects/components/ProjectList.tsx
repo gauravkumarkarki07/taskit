@@ -6,11 +6,10 @@ import {
     PaginationLink, PaginationNext, PaginationPrevious
 } from "@/components/ui/pagination"
 
+import { Project } from "./ProjectCard";
 
 function ProjectList() {
-    const{data,isLoading}=useGetAllProjects();
-
-    console.log(data);
+    const{data:projectArray,isLoading}=useGetAllProjects();
 
     if(isLoading){
         return <Spinner/>
@@ -20,7 +19,7 @@ function ProjectList() {
         <section className="flex flex-col gap-4">
             <h1 className="font-semibold">Project Details</h1>
             <section className="flex flex-wrap gap-12 items-center">
-                {projects?.map((project) => (
+                {projectArray?.projects.map((project:Project) => (
                     <ProjectCard project={project} key={project.id} />
                 ))}
             </section>
@@ -50,40 +49,6 @@ function ProjectList() {
     )
 }
 
-const projects = [
-    {
-        id: 'asdasd',
-        title: 'asdasd',
-        description: 'asdasd',
-        totalTask: 5,
-        taskCompleted: 2
-
-    },
-    {
-        id: 's',
-        title: 'asdasd',
-        description: 'asdasd',
-        totalTask: 5,
-        taskCompleted: 2
-
-    },
-    {
-        id: 'sd',
-        title: 'asdasd',
-        description: 'asdasd',
-        totalTask: 5,
-        taskCompleted: 2
-
-    },
-    {
-        id: 'asd',
-        title: 'asdasd',
-        description: 'asdasd',
-        totalTask: 5,
-        taskCompleted: 2
-
-    }
-]
 
 
 export default ProjectList

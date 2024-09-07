@@ -1,7 +1,7 @@
 import { Progress } from "@/components/ui/progress"
 import { format } from 'date-fns';
 
-interface Project {
+export interface Project {
     id: string;
     title: string;
     description?: string;
@@ -18,7 +18,7 @@ function ProjectCard({ project }: ProjectCardProps) {
     const progressValue = project.totalTask ? (project.taskCompleted || 0) / project.totalTask * 100 : 0;
 
     return (
-        <section className="px-2 py-2 rounded-md bg-white text-black flex flex-col w-[450px] h-[180px] gap-4 relative">
+        <section className="px-3 py-2 rounded-md bg-white text-black flex flex-col w-[450px] h-[180px] gap-4 relative">
             <section className="flex flex-col flex-grow gap-2">
                 <h1 className="w-[80%] whitespace-nowrap text-ellipsis overflow-hidden font-semibold">
                     {project.title}
