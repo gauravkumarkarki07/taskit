@@ -9,18 +9,20 @@ import { Input } from "@/components/ui/input";
 import { useForm } from 'react-hook-form';
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from '@/lib/utils';
+import { useCreateProject } from "../hooks/useProjectQuery";
 
 
-interface Project {
+export interface Project {
     title: string;
     description?: string;
 }
 
 function CreateProjectDialog() {
     const { register, handleSubmit, formState: { errors } } = useForm<Project>();
+    const { mutateAsync: createProjectApiCall } = useCreateProject();
 
-    const handleSave = (validData: Project) => {
-        console.log(validData)
+    const handleSave = async(validData: Project) => {
+        await createProjectApiCall(validData);
     }
     return (
         <Dialog>

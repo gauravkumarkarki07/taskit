@@ -1,3 +1,5 @@
+import Spinner from "@/Common/Utils/Spinner";
+import { useGetAllProjects } from "../hooks/useProjectQuery"
 import ProjectCard from "./ProjectCard"
 import {
     Pagination, PaginationContent, PaginationItem,
@@ -6,6 +8,14 @@ import {
 
 
 function ProjectList() {
+    const{data,isLoading}=useGetAllProjects();
+
+    console.log(data);
+
+    if(isLoading){
+        return <Spinner/>
+    }
+
     return (
         <section className="flex flex-col gap-4">
             <h1 className="font-semibold">Project Details</h1>
