@@ -1,7 +1,6 @@
-import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { CirclePlusIcon } from "lucide-react"
+import TaskCreateDialog from "@/Tasks/components/TaskCreateDialog"
 
 function TaskTable() {
   return (
@@ -14,14 +13,7 @@ function TaskTable() {
                     Track your tasks and deadlines here.
                 </span>
             </article>
-            <Button>
-                <section className="flex gap-2 items-center">
-                    <CirclePlusIcon/>
-                    <span>
-                        Add New Task
-                    </span>
-                </section>
-            </Button>
+            <TaskCreateDialog/>
         </section>
         <Separator/>
         <section>

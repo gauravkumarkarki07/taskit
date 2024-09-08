@@ -30,3 +30,21 @@ export const ProjectEndpoints = {
     return `project/getprojectbyid/${projectId}`
   }
 };
+
+export const TaskEndpoints={
+  createTask:(projectId:string)=>{
+    return `${projectId}`
+  },
+  updateTask:(projectId:string,taskId:string)=>{
+    return `${projectId}/${taskId}`
+  },
+  getTaskById:(projectId:string,taskId:string)=>{
+    return `${projectId}/${taskId}`
+  },
+  getAllTasks:(projectId:string)=>{
+    return `${projectId}`
+  },
+  deleteTask:(projectId:string,taskId:string)=>{
+    return `${projectId}/${taskId}`
+  }
+}
