@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import Spinner from "@/Common/Utils/Spinner";
 import { useEffect } from "react";
 import ProjectDeleteConfirm from "./ProjectDeleteConfirm";
+import TaskTable from "./TaskTable";
 
 function ProjectEditPage() {
 
@@ -84,6 +85,7 @@ function ProjectEditPage() {
                     </Button>
                 </section>
             </form>
+            <TaskTable/>
         </section>
     );
 }
