@@ -1,4 +1,5 @@
 import { Expose } from 'class-transformer';
+import { TaskStatus } from '@prisma/client';
 
 export class CreateTaskResponseDto {
   @Expose()
@@ -18,12 +19,17 @@ export class GetTaskByIdResponseDto {
   @Expose()
   description?: string;
   @Expose()
-  status: string;
+  status: TaskStatus;
   @Expose()
-  dueDate?: string;
+  dueDate?: Date;
 }
 
 export class GetAllTasksResponseDto {
   @Expose()
   tasks: GetTaskByIdResponseDto[] = [];
+}
+
+export class DeleteTaskResponseDto {
+  @Expose()
+  id: string;
 }
