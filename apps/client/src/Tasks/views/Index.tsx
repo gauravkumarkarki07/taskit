@@ -7,19 +7,27 @@ import { Button } from "@/components/ui/button"
 import DatePicker from "@/components/ui/date-picker"
 import { useForm } from "react-hook-form"
 import { cn } from "@/lib/utils"
+import { useCreateTask } from "../hooks/useTaskQuery"
+import { useParams } from "react-router-dom"
 
 export interface TaskCreate {
     title: string;
     description?: string;
-    status: string;
-    dueDate: Date;
+    status?: string;
+    dueDate?: Date;
 }
 
-function Index() {
-    const { register, handleSubmit, formState: { errors }, control } = useForm<TaskCreate>();
+function Index({setIsOpen}:{setIsOpen:()=>void}) {
 
-    const handleSave = (validData: TaskCreate) => {
-        console.log(validData);
+    const{projectId}=useParams<string>();
+    const projectid=projectId || '';
+    const { register, handleSubmit, formState: { errors }, control,reset } = useForm<TaskCreate>();
+    const {mutateAsync:createTaskApiCall}=useCreateTask();
+
+    const handleSave = async(validData: TaskCreate) => {
+        await createTaskApiCall({projectId:projectid,data:validData});
+        reset();
+        setIsOpen();
     }
 
     return (

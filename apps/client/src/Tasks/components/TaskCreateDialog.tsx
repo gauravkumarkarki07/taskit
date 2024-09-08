@@ -2,11 +2,17 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { CirclePlusIcon } from "lucide-react"
 import TaskForm from '../views/Index'
+import { useState } from "react"
 
 
 function TaskCreateDialog() {
+    const[isOpen,setIsOpen]=useState(false);
+
+    const closeDialog=()=>{
+        setIsOpen(false);
+    }
     return (
-        <Dialog>
+        <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <DialogTrigger asChild>
                 <Button>
                     <section className="flex gap-2 items-center">
@@ -26,7 +32,7 @@ function TaskCreateDialog() {
                         Add title, description and due dates of the tasks
                     </DialogDescription>
                 </DialogHeader>
-                <TaskForm/>
+                <TaskForm setIsOpen={closeDialog}/>
             </DialogContent>
         </Dialog>
     )

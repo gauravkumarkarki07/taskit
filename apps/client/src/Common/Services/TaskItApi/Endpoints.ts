@@ -33,18 +33,18 @@ export const ProjectEndpoints = {
 
 export const TaskEndpoints={
   createTask:(projectId:string)=>{
-    return `${projectId}`
+    return `task/${projectId}`
   },
   updateTask:(projectId:string,taskId:string)=>{
-    return `${projectId}/${taskId}`
+    return `task/${projectId}/${taskId}`
   },
   getTaskById:(projectId:string,taskId:string)=>{
-    return `${projectId}/${taskId}`
+    return `task/${projectId}/${taskId}`
   },
   getAllTasks:(projectId:string)=>{
-    return `${projectId}`
+    return `task/${projectId}`
   },
   deleteTask:(projectId:string,taskId:string)=>{
-    return `${projectId}/${taskId}`
+    return `task/${projectId}/${taskId}`
   }
 }
