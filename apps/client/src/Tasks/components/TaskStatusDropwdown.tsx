@@ -1,6 +1,13 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Controller, Control } from "react-hook-form"
+import { TaskCreate } from "../views/Index"
+import { cn } from "@/lib/utils"
 
-function TaskStatusDropwdown() {
+interface TaskStatusDropwdown {
+    control: Control<TaskCreate>
+}
+
+function TaskStatusDropwdown({ control }: TaskStatusDropwdown) {
     const status = ["PENDING", "COMPLETED", "OVERDUE"]
 
     const getStatusColor = (status: string) => {
@@ -17,20 +24,31 @@ function TaskStatusDropwdown() {
     }
     return (
         <section className="px-2 py-1 border rounded-lg w-[200px]">
-            <DropdownMenu>
-                <DropdownMenuTrigger className="text-sm w-full">
-                    Status
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                    {status.map((data, index) => (
-                        <DropdownMenuItem key={index}>
-                            <span className={getStatusColor(data)}>
-                                {data}
-                            </span>
-                        </DropdownMenuItem>
-                    ))}
-                </DropdownMenuContent>
-            </DropdownMenu>
+            <Controller
+                name="status"
+                control={control}
+                render={({ field: { value, onChange } }) => (
+                    <DropdownMenu>
+                        <DropdownMenuTrigger             className={cn( value && getStatusColor(value),'text-sm w-full' )}
+                        >
+                            {value ? value : 'Status'}
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            {status.map((data, index) => (
+                                <DropdownMenuItem
+                                    key={index}
+                                    onSelect={() => onChange(data)}
+                                >
+                                    <span className={getStatusColor(data)}>
+                                        {data}
+                                    </span>
+                                </DropdownMenuItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                )}
+            >
+            </Controller>
         </section>
     )
 }
