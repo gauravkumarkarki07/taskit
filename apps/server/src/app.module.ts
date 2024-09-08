@@ -10,9 +10,16 @@ import { ProjectsModule } from './Modules/Projects/projects.module';
 import { DatabaseModule } from './Modules/Database/database.module';
 import { AuthModule } from './Modules/Auth/auth.module';
 import { JwtMiddleware } from './Middleware/jwt.middleware';
+import { TaskModule } from './Modules/Task/task.module';
 
 @Module({
-  imports: [ProjectsModule, DatabaseModule, ProjectsModule, AuthModule],
+  imports: [
+    ProjectsModule,
+    DatabaseModule,
+    ProjectsModule,
+    AuthModule,
+    TaskModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
